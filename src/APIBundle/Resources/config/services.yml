@@ -1,0 +1,13 @@
+services:
+#    api.example:
+#        class: APIBundle\Example
+#        arguments: ["@service_id", "plain_value", "%parameter%"]
+
+    api.secureapi:
+        class: APIBundle\Secure\SecuriteAPI
+        
+    api.secureapi.listener:
+        class: APIBundle\Secure\SecuriteAPIListener
+        arguments: ["@api.secureapi"]
+        tags:
+            - { name: kernel.event_listener, event: kernel.response, method: processSecure }

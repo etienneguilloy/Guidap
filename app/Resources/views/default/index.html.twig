@@ -3,16 +3,17 @@
 {% block body %}
     <div id="wrapper">
         <div id="container">
-           
-			<div id="timeline"></div>
+			<div id="app">
+				<ul id="timeline"><li v-for="retourapi in retoursapi">${ retourapi.text }</li></ul>
+				
+				<div>
+					<button v-on:click="moins">-</button>
+					<input type="text" id="nombre_mystere" name="nombre_mystere" value="0" v-model="nombre_mystere" number />
+					<button v-on:click="plus">+</button>
 
-			<form>
-			<input type="button" id="moins_nombre_mtystere" name="moins_nombre_mtystere" value="-" />
-			<input type="text" id="nombre_mystere" name="nombre_mystere" />
-			<input type="button" id="plus_nombre_mtystere" name="plus_nombre_mtystere" value="+" />
-
-			<input type="submit" id="submit_nombre" name="submit_nombre" value="Tester" />
-			</form>
+					<button v-on:click="tester_nombre">Tester</button> 
+				</div>
+			</div>
 
         </div>
     </div>
@@ -21,4 +22,8 @@
 {% block stylesheets %}
 <style>
 </style>
+{% endblock %}
+
+{% block javascripts %}
+<script src="{{ asset('js/main.js') }}"></script>
 {% endblock %}

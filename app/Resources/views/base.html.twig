@@ -8,6 +8,9 @@
     </head>
     <body>
         {% block body %}{% endblock %}
-        {% block javascripts %}{% endblock %}
+        
+		<script src="{{ asset('js/vue.js') }}"></script>
+		<script src="{{ asset('js/vueresource.js') }}"></script>
+		{% block javascripts %}{% endblock %}
     </body>
 </html>
