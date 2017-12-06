@@ -1,0 +1,24 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div id="wrapper">
+        <div id="container">
+           
+			<div id="timeline"></div>
+
+			<form>
+			<input type="button" id="moins_nombre_mtystere" name="moins_nombre_mtystere" value="-" />
+			<input type="text" id="nombre_mystere" name="nombre_mystere" />
+			<input type="button" id="plus_nombre_mtystere" name="plus_nombre_mtystere" value="+" />
+
+			<input type="submit" id="submit_nombre" name="submit_nombre" value="Tester" />
+			</form>
+
+        </div>
+    </div>
+{% endblock %}
+
+{% block stylesheets %}
+<style>
+</style>
+{% endblock %}
