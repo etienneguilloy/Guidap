@@ -13,7 +13,12 @@ class DefaultController extends Controller
      */
     public function indexAction(Request $request)
     {
-        return $this->render('default/index.html.twig');
+		// On signe le futur appel a l api en fonction de l url de la page d appel
+		$secure = $this->container->get('api.secureapi');
+		$signature = $secure->get_signature($request->getUri());
+		
+		
+        return $this->render('default/index.html.twig',['signature'=>$signature]);
     }
 	
 	

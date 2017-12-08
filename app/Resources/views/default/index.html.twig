@@ -4,15 +4,22 @@
     <div id="wrapper">
         <div id="container">
 			<div id="app">
-				<ul id="timeline"><li v-for="retourapi in retoursapi">${ retourapi.text }</li></ul>
-				
 				<div>
 					<button v-on:click="moins">-</button>
-					<input type="text" id="nombre_mystere" name="nombre_mystere" value="0" v-model="nombre_mystere" number />
+					<input type="text" id="nombre_mystere" name="nombre_mystere" v-model="nombre_mystere" />
 					<button v-on:click="plus">+</button>
 
-					<button v-on:click="tester_nombre">Tester</button> 
+					<button v-on:click="tester_nombre">Tester</button>
+					
+					<button v-on:click="nouveau_nombre">Generer un nouveau nombre mystère</button> 
+					
+					<input type="hidden" value="{{signature}}" id="signature"> 
 				</div>
+				
+				<div id="timeline_container">
+					<ul id="timeline"><li v-for="retourapi in retoursapi">Votre proposition ${ retourapi.proposition }<br/>Le nombre mystère est ${ retourapi.complement }</li></ul>
+				</div>
+				
 			</div>
 
         </div>
@@ -20,8 +27,7 @@
 {% endblock %}
 
 {% block stylesheets %}
-<style>
-</style>
+<link rel="stylesheet" type="text/css" href="{{ asset('css/main.css') }}">
 {% endblock %}
 
 {% block javascripts %}

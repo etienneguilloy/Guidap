@@ -1,0 +1,30 @@
+#nombre_mystere
+{
+	width:50px;
+}
+
+#timeline_container
+{
+	width:100%;
+}
+
+#timeline_container ul
+{
+	padding-left:0px;
+	padding-right:0px;
+}
+
+#timeline_container ul#timeline li 
+{
+	list-style:none;
+	display:inline-block;
+	width:250px;
+	border : thin solid black;
+	margin-right:10px;
+	margin-bottom:10px;
+	padding-left:10px;
+	padding-right:10px;
+	padding-top:5px;
+	padding-bottom:5px;
+	text-align:center;
+}
