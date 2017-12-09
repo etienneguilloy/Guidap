@@ -24,12 +24,12 @@ class DefaultController extends Controller
      */
 	public function testernombre($nombre, $signature)
 	{
-		$propositon_nombre = $nombre;
-		$nombre = filter_var($nombre, FILTER_SANITIZE_NUMBER_INT);
-		if(!is_numeric($nombre))
+		$nombre = filter_var($nombre, FILTER_SANITIZE_STRING);
+		if(!is_numeric($nombre) || (is_numeric($nombre) && ($nombre< 0 ||$nombre > 100)) || (is_numeric($nombre) && intval($nombre) != $nombre))
 		{
 			$retour['result'] = null;
-			$retour['proposition'] = $propositon_nombre;
+			$retour['msg'] = 'Votre proposition doit être un entier entre 0 et 100';
+			$retour['type'] = 'alert-warning';
 			return new JsonResponse($retour);
 		}
 		

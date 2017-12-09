@@ -71,6 +71,14 @@ var app = new Vue({
 				{
 					this.retoursapi.push({proposition:response.body.proposition, complement: response.body.complement })
 				}
+				else
+				{
+					this.alert_msg = response.body.msg;
+					this.type_alert = response.body.type;
+					
+					$("#alert").show();
+					setTimeout(function(){ $("#alert").hide(); }, 3000);
+				}
 				
 
 			}, response => {
