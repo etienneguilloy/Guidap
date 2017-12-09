@@ -4,7 +4,9 @@ var app = new Vue({
 	data: {
 		nombre_mystere : 0,
 		retoursapi: [],
-		signature : this.signature.value
+		signature : this.signature.value,
+		alert_msg : '',
+		type_alert : ''
 	},
 	methods: {
 		// Soustraire 1 au nombre mystere
@@ -19,6 +21,34 @@ var app = new Vue({
 			new_nombre = (new_nombre > 100 ) ? 100 : new_nombre;
 			this.nombre_mystere = new_nombre;
 		},
+		
+		// Generation d un nouveau nombre mystere
+		nouveau_nombre : function()
+		{
+			var resource = this.$resource('/api/nouveaunombre{/signature}');
+			resource.get({signature : this.signature}).then(response => {
+				if(response.body.done)
+				{
+					this.retoursapi = [];
+					this.nombre_mystere = 0;
+					
+					this.alert_msg = response.body.msg;
+					this.type_alert = response.body.type;
+					
+					$("#alert").show();
+					setTimeout(function(){ $("#alert").hide(); }, 3000);
+					
+				}
+				else
+				{
+					alert('Erreur');
+				}
+
+			}, response => {
+				
+			});
+		},
+		
 		// Lancement du test de la proposition utilisateur
 		tester_nombre : function(event){
 			
@@ -27,35 +57,21 @@ var app = new Vue({
 			resource.get({nombre: this.nombre_mystere, signature : this.signature}).then(response => {
 				if(response.body.result)
 				{
-					alert('Felicitation vous avez trouvé le nombre mystère!');
 					this.retoursapi = [];
 					this.nombre_mystere = 0;
+					
+					this.alert_msg = response.body.complement;
+					this.type_alert = response.body.type;
+					
+					$("#alert").show();
+					setTimeout(function(){ $("#alert").hide(); app.nouveau_nombre(); }, 2000);
+					
 				}
 				else if(response.body.result !== null)
 				{
 					this.retoursapi.push({proposition:response.body.proposition, complement: response.body.complement })
 				}
 				
-
-			}, response => {
-				
-			});
-		},
-		// Generation d un nouveau nombre mystere
-		nouveau_nombre : function()
-		{
-			var resource = this.$resource('/api/nouveaunombre{/signature}');
-			resource.get({signature : this.signature}).then(response => {
-				if(response.body.done)
-				{
-					alert('Nouveau nombre généré');
-					this.retoursapi = [];
-					this.nombre_mystere = 0;
-				}
-				else
-				{
-					alert('Erreur');
-				}
 
 			}, response => {
 				

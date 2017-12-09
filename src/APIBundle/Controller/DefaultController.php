@@ -16,7 +16,7 @@ class DefaultController extends Controller
 	{
 		$generernombre = $this->container->get('api.generernombre');
 		$generernombre->nouveau_nombre();
-		return new JsonResponse(array('done'=>true));
+		return new JsonResponse(array('done'=>true, 'type'=>'alert-success', 'msg'=>'Nouveau nombre généré'));
 	}
 	
     /**
@@ -56,7 +56,8 @@ class DefaultController extends Controller
 		else
 		{
 			$retour['result'] = true;
-			$retour['complement'] = 'félicitation';
+			$retour['complement'] = 'Félicitation vous avez trouvé le nombre mystère';
+			$retour['type'] = 'alert-success';
 		}
 		
 		return new JsonResponse($retour);

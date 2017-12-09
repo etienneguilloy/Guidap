@@ -39,7 +39,6 @@ class GenererNombre
 	
 	private function generer_nombre()
 	{
-		// $this->session->set('nombre_mystere',rand(0,100));
-		$this->session->set('nombre_mystere',12);
+		$this->session->set('nombre_mystere',rand(0,100));
 	}
 }

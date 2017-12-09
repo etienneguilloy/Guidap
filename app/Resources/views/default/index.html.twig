@@ -1,21 +1,25 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <div id="wrapper">
+    <div id="wrapper" class="container">
         <div id="container">
 			<div id="app">
-				<div>
-					<button v-on:click="moins">-</button>
-					<input type="text" id="nombre_mystere" name="nombre_mystere" v-model="nombre_mystere" />
-					<button v-on:click="plus">+</button>
-
-					<button v-on:click="tester_nombre">Tester</button>
-					
-					<button v-on:click="nouveau_nombre">Generer un nouveau nombre mystère</button> 
+				<div id="alert" class="alert" :class="type_alert"  role="alert" style="display:none;">
+				 ${alert_msg}
+				</div>
+				<div id="container-action">
+					<div class="form-group row">
+						<button type="button" v-on:click="moins" class="btn btn-secondary btn-sm decremente-mystere">-</button>
+						<input type="text" id="nombre_mystere" name="nombre_mystere" v-model="nombre_mystere" class="form-control form-control-sm" />
+						<button type="button" v-on:click="plus" class="btn btn-secondary btn-sm incremente-mystere">+</button>
+						
+						<button type="button" v-on:click="tester_nombre" class="btn btn-outline-primary btn_aere">Tester</button>
+						
+						<button type="button" v-on:click="nouveau_nombre" class="btn btn-outline-success btn_aere">Generer un nouveau nombre mystère</button> 
+					</div>
 					
 					<input type="hidden" value="{{signature}}" id="signature"> 
 				</div>
-				
 				<div id="timeline_container">
 					<ul id="timeline"><li v-for="retourapi in retoursapi">Votre proposition ${ retourapi.proposition }<br/>Le nombre mystère est ${ retourapi.complement }</li></ul>
 				</div>
